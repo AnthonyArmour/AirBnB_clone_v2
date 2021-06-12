@@ -14,10 +14,12 @@ def do_clean(number=0):
     """deletes all but newest files"""
     if number == 0:
         number = 1
-    local("cd versions; rm `" + "ls -t" +
-          " | if [ ${#} -eg " + str(number) +" ]; then awk 'NR >" + str(number) + "' fi`")
+    local("cd versions; " + "words=`ls -t | wc -l | awk '{print $1}'`; if [[ $words -gt " +
+          str(number) + " ]]; then rm `ls -t | awk 'NR >" + str(number) + "'`; fi")
     with cd("/data/web_static/releases"):
-        run("rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
+        run("words=`ls -t | wc -l | awk '{print $1}'`; if [[ $words -gt " +
+            str(number) + " ]]; then rm `ls -t | awk 'NR >" + str(number) + "'`; fi")
+
 
 def deploy():
     """deploys archive"""
