@@ -5,6 +5,7 @@
 from fabric.api import local, run, put, env
 from datetime import datetime
 import os.path
+from fabric.context_managers import cd
 
 env.hosts = ["54.242.225.135", "3.92.27.64"]
 
@@ -13,8 +14,10 @@ def do_clean(number=0):
     """deletes all but newest files"""
     if number == 0:
         number = 1
-    local("rm `" + "ls -t ./versions *" + " | awk 'NR >" + str(number) + '`')
-    run("rm `" + "ls -t /data/web_static/releases *" + " | awk 'NR >" + str(number) + '`')
+    with cd("/versions"):
+        local("rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
+    with cd("/data/web_static/releases"):
+        run("rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
 
 def deploy():
     """deploys archive"""
