@@ -13,8 +13,8 @@ def do_clean(number=0):
     """deletes all but newest files"""
     if number == 0:
         number = 1
-    local("ls -R ./versions -t | tail -n " + str(number) + " | xargs -I {} rm {}")
-    run("ls -R /data/web_static/releases -t | tail -n " + str(number) + " | xargs -I {} rm {}")
+    local("ls ./versions -t | tail -n " + str(number) + " | xargs -I {} rm {}")
+    run("ls /data/web_static/releases -t | tail -n " + str(number) + " | xargs -I {} rm {}")
 
 def deploy():
     """deploys archive"""
