@@ -14,8 +14,7 @@ def do_clean(number=0):
     """deletes all but newest files"""
     if number == 0:
         number = 1
-    with cd("/versions"):
-        local("rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
+    local("cd versions; rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
     with cd("/data/web_static/releases"):
         run("rm `" + "ls -t" + " | awk 'NR >" + str(number) + "'`")
 
