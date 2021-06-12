@@ -12,13 +12,19 @@ env.hosts = ["54.242.225.135", "3.92.27.64"]
 
 def do_clean(number=0):
     """deletes all but newest files"""
-    if number == 0:
+    if int(number) == 0:
         number = 1
-    local("cd versions; " + "words=`ls -t | wc -l | awk '{print $1}'`; if [[ $words -gt " +
-          str(number) + " ]]; then rm `ls -t | awk 'NR >" + str(number) + "'`; fi")
+
+    loc_str = local("cd versions; ls -t", capture=True)
+    loc_lst = loc_str.split('\n')
+    if len(loc_lst) > int(number):
+        local("cd versions; rm `ls -t | awk 'NR >" + str(number) + "'`")
+
     with cd("/data/web_static/releases"):
-        run("words=`ls -t | wc -l | awk '{print $1}'`; if [[ $words -gt " +
-            str(number) + " ]]; then rm `ls -t | awk 'NR >" + str(number) + "'`; fi")
+        run_str = run("ls -t")
+        run_lst = run_str.split('\n')
+        if len(run_lst) > int(number):
+            run("rm `ls -t | awk 'NR >" + str(number) + "'`")
 
 
 def deploy():
