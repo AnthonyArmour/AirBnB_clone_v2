@@ -32,7 +32,7 @@ class TestConsole(unittest.TestCase):
             state_id = f.getvalue()[:-1]
         with open(fs._FileStorage__file_path, 'r') as fd:
             self.assertIn(state_id, fd.read())
-   
+
     @unittest.skipIf(os.environ.get('HBNB_TYPE_STORAGE') != 'db', "DB only")
     def test_create2(self):
         """Tests create state"""

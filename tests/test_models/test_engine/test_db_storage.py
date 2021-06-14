@@ -37,7 +37,7 @@ class test_db_Storage(unittest.TestCase):
 
     def test_obj_list_empty(self):
         """ __objects is initially empty """
-        self.assertEqual(len(storage.all()), 4)
+        self.assertEqual(len(storage.all()), 3)
 
     def test_new(self):
         """ New object is correctly added to db """
@@ -66,7 +66,8 @@ class test_db_Storage(unittest.TestCase):
         self.cursor.execute('SELECT count(*) FROM cities')
         length2 = self.cursor.fetchone()[0]
         self.assertEqual(length2, length + 1)
-        self.cursor.execute('SELECT name FROM cities WHERE name = "San Francisco"')
+        self.cursor.execute('SELECT name FROM cities' +
+                            'WHERE name = "San Francisco"')
         name = self.cursor.fetchone()
         self.assertIn("San Francisco", name)
 
