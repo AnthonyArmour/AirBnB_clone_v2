@@ -51,7 +51,8 @@ class test_db_Storage(unittest.TestCase):
         self.assertIsInstance(storage.all(), dict)
 
     def test_city_db(self):
-        """ Tests creation of city """
+        """ Tests creation of city  """
+        var = 'SELECT name FROM cities WHERE name = "San Francisco"'
         self.cursor.execute('SELECT count(*) FROM cities')
         length = self.cursor.fetchone()[0]
         self.cursor.close()
@@ -66,8 +67,7 @@ class test_db_Storage(unittest.TestCase):
         self.cursor.execute('SELECT count(*) FROM cities')
         length2 = self.cursor.fetchone()[0]
         self.assertEqual(length2, length + 1)
-        self.cursor.execute('SELECT name FROM cities' +
-                            'WHERE name = "San Francisco"')
+        self.cursor.execute(var)
         name = self.cursor.fetchone()
         self.assertIn("San Francisco", name)
 
