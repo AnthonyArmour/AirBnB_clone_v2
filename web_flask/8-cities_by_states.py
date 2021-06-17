@@ -33,7 +33,8 @@ def state_list():
     objs = storage.all(State)
     lst_objs = sorted(objs.values(), key=lambda x: x.name)
     for item in lst_objs:
-        item.cities = sorted(item.cities, key=lambda x: x.name)
+        cities = sorted(item.cities, key=lambda x: x.name)
+        setattr(item, "sorted_cities", cities)
     return render_template('8-cities_by_states.html', states=lst_objs)
 
 

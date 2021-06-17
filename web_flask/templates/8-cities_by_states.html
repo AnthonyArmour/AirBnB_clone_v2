@@ -9,7 +9,7 @@
             {% for state in states %}
             <li>{{ state.id|e }}: <B>{{ state.name|e }}</B>
                 <UL>
-                    {% for city in state.cities %}
+                    {% for city in state.sorted_cities %}
                     <li>{{ city.id|e }}: <B>{{ city.name }}</B></li>
                     {% endfor %}
                 </UL>
