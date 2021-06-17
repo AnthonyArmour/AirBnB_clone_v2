@@ -65,8 +65,7 @@ class DBStorage():
 
     def close(self):
         """closes session"""
-        self.__session.remove()
-        self.reload()
+        self.__session.close()
 
     def reload(self):
         """Creates all tables in database"""
