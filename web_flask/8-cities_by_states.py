@@ -32,7 +32,9 @@ app = Flask(__name__)
 def state_list():
     objs = storage.all(State)
     lst_objs = sorted(objs.values(), key=lambda x: x.name)
-    return render_template('8-cities_by_states', states=lst_objs)
+    for item in lst_objs:
+        item.cities = sorted(item.cities, key=lambda x: x.name)
+    return render_template('8-cities_by_states.html', states=lst_objs)
 
 
 @app.teardown_appcontext
