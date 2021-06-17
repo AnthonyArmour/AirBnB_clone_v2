@@ -16,7 +16,7 @@ class State(BaseModel, Base):
         """Getter for cities"""
         from models import storage
         lst = []
-        for k, v in storage.all(City):
+        for k, v in storage.all(City).items():
             if self.id == v.state_id:
                 lst.append(v)
         return lst
