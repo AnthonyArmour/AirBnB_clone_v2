@@ -35,10 +35,6 @@ class test_db_Storage(unittest.TestCase):
         except:
             pass
 
-    def test_obj_list_empty(self):
-        """ __objects is initially empty """
-        self.assertEqual(len(storage.all()), 4)
-
     def test_new(self):
         """ New object is correctly added to db """
         new = State(name="Oklahoma")
