@@ -19,7 +19,7 @@ def hbnb():
 
 @app.route('/c/<string:text>', strict_slashes=False)
 def var_text(text):
-    return "c %s" % text.replace("_", " ")
+    return "C %s" % text.replace("_", " ")
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
