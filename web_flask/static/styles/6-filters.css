@@ -50,6 +50,8 @@ h4 {
     padding-left: 30px;
     display: none;
     position: relative;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .popover ul {
