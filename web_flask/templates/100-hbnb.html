@@ -80,7 +80,7 @@
 					</div>
 					<div class="user"><b>Owner</b>: {{ places[0].username }}</div>
 					<div class="description">
-						{{ places[0].description }}
+						{{ places[0].description|replace("<BR/>", "\n") }}
 					</div>
 				</article>
 
@@ -107,7 +107,7 @@
 				</div>
 				<div class="user"><b>Owner</b>: {{ places[0].username }}</div>
 				<div class="description">
-					{{ places[1].description }}
+					{{ places[1].description|replace("<BR/>", "\n") }}
 				</div>
 			</article>
 
@@ -134,7 +134,7 @@
 				</div>
 				<div class="user"><b>Owner</b>: {{ places[0].username }}</div>
 				<div class="description">
-					{{ places[2].description }}
+					{{ places[2].description|replace("<BR/>", "\n") }}
 				</div>
 			</article>
 			</div>
