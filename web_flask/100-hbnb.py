@@ -8,6 +8,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
+from models.user import User
 
 app = Flask(__name__)
 
@@ -17,13 +18,18 @@ def state_list():
     state_objs = storage.all(State)
     amenity_objs = storage.all(Amenity)
     place_objs = storage.all(Place)
+    user_objs = storage.all(User)
     p_lst = sorted(place_objs.values(), key=lambda x: x.name)
     a_lst = sorted(amenity_objs.values(), key=lambda x: x.name)
     lst_objs = sorted(state_objs.values(), key=lambda x: x.name)
     for item in lst_objs:
         cities = sorted(item.cities, key=lambda x: x.name)
         setattr(item, "sorted_cities", cities)
-    return render_template('10-hbnb_filters.html',
+    for place in place_objs:
+        for user in user_objs:
+            if place.user_id == user.id:
+                setattr(place, "username", user.name)
+    return render_template('100-hbnb.html',
                            states=lst_objs, amenities=a_lst, places=p_lst)
 
 
