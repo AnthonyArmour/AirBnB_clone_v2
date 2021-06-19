@@ -3,7 +3,8 @@
 	<head>
 		<title>AirBnB clone</title>
 
-		<link rel="shortcut icon" href="images/icon.ico" >
+		<link rel="icon" href="images/icon-3-webstatic.png">
+		<!-- <link rel="shortcut icon" href="images/icon.ico" > -->
 
 		<link rel="stylesheet" href="styles/4-common.css"/>
 		<link rel="stylesheet" href="styles/3-header.css"/>
@@ -13,65 +14,78 @@
 	</head>
     <body>
 		<header>
-			<div id="header_logo"></div>
+			<div class="logo"></div>
 		</header>
+
+		<!-- Container listing states-cities box and amentities box -->
+
 		<div class="container">
 			<section class="filters">
-				<button>Search</button>
-				<div class="locations">
-					<h3>States</h3>
-					<h4>California, Arizona...</h4>
-					<ul class="popover">
-						<li><h2>Arizona</h2>
-							<ul>
-								<li><h4>Page</h4></li>
-								<li><h4>Page2</h4></li>
-							</ul></li>
-						<li><h2>California</h2>
-							<ul>
-								<li><h4>San Francisco</h4></li>
-								<li><h4>Los Altos</h4></li>
-							</ul></li>
-					</ul>
-				</div>
-				<div class="amenities">
-					<h3>Amenities</h3>
-					<h4>Internet, Kitchen...</h4>
-					<ul class="popover">
-						<li><h4>Internet</h4></li>
-						<li><h4>TV</h4></li>
-						<li><h4>Kitchen</h4></li>
-						<li><h4>Iron</h4></li>
-					</ul>
-				</div>
-
+                <div class="locations">
+                    <h3>States</h3>
+                    <UL class="popover">
+                        {% for state in states %}
+                        <li><B>{{ state.name|e }}</B>
+                            <UL>
+                                {% for city in state.sorted_cities %}
+                                <li><p>{{ city.name }}</p></li>
+                                {% endfor %}
+                            </UL>
+                        </li>
+                        {% endfor %}
+                    </UL>
+                </div>
+                <div class="amenities">
+                    <h3>Amenities</h3>
+                    <ul class="popover">
+                        <li>
+                            <UL>
+                                {% for item in amenities %}
+                                <li><p>{{ item.name }}</p></li>
+                                {% endfor %}
+                            </UL>
+                        </li>
+                    </ul>
+                </div>
+                <button>Search</button>
 			</section>
+
+
+			<!-- Place flex boxes -->
+
 			<section class="places">
 				<h1>Places</h1>
+				<div class="places-wrapper">
+
+			<!-- 1st Place box -->
+
 				<article>
 					<div class="headline">
-						<h2>My home</h2>
+						<h2>{{ places[0].name }}</h2>
 						<div class="price_by_night">$80</div>
 					</div>
 					<div class="information">
 						<div class="max_guest">
 							<div class="guest_icon"></div>
-							<p>2 Guests</p>
+							<p>{{ places[0].max_guest }} Guests</p>
 						</div>
 						<div class="number_rooms">
 							<div class="bed_icon"></div>
-							<p>1 Bedroom</p>
+							<p>{{ places[0].number_rooms }} Bedroom</p>
 						</div>
 						 <div class="number_bathrooms">
 							<div class="bath_icon"></div>
-							<p>1 Bathroom</p>
+							<p>{{ places[0].number_bathrooms }} Bathroom</p>
 						</div>
 					</div>
-					<div class="user"><b>Owner</b>: John Lennon</div>
+					<div class="user"><b>Owner</b>: {{ places[0].user_id }}</div>
 					<div class="description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     </div>
 				</article>
+
+			<!-- 2nd Place box -->
+
 				<article>
 					<div class="headline">
 						<h2>Tiny house</h2>
@@ -96,6 +110,9 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
 				</article>
+
+			<!-- 3rd Place box -->
+
 				<article>
 					<div class="headline">
 						<h2>A suite</h2>
@@ -120,6 +137,7 @@
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</div>
 				</article>
+			</div>
 			</section>
 		</div>
 		<footer>
