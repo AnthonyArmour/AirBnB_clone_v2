@@ -16,12 +16,12 @@
             <section class="filters">
                 <div class="locations">
                     <h3>States</h3>
-                    <UL>
+                    <UL class="popover">
                         {% for state in states %}
                         <li><B>{{ state.name|e }}</B>
                             <UL>
                                 {% for city in state.sorted_cities %}
-                                <li><B>{{ city.name }}</B></li>
+                                <li><p>{{ city.name }}</p></li>
                                 {% endfor %}
                             </UL>
                         </li>
