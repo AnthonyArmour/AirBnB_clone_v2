@@ -142,6 +142,9 @@
 		</div>
 		<footer>
 			<p>Holberton School</p>
+			{% for obj in places %}
+			<p>{{ obj.name }}</p>
+			{% endfor %}
 		</footer>
 	</body>
 </html>
