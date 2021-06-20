@@ -29,7 +29,7 @@ def state_list():
         for user in user_objs.values():
             if place.user_id == user.id:
                 uname = user.first_name + " " + user.last_name
-                setattr(place, "username", uname.replace("&nbsp;", "\n"))
+                setattr(place, "username", uname.replace("&lt;BR /&gt;", "\n"))
         setattr(place, "description", place.description.replace("&nbsp;", "\n"))
     return render_template('100-hbnb.html',
                            states=lst_objs, amenities=a_lst, places=p_lst)
